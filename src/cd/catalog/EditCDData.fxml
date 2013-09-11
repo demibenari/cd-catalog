@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+                            prefHeight="523.0" prefWidth="600.0" 
+                            xmlns:fx="http://javafx.com/fxml" fx:controller="cd.catalog.EditCDDataController">
+  <children>
+    <BorderPane prefHeight="523.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <bottom>
+        <Pane prefHeight="96.0" prefWidth="600.0">
+          <children>
+            <Button id="cancelBtn" fx:id="cancelBtn" onAction="#cancelBtnClicked" layoutX="68.0" layoutY="42.0" mnemonicParsing="false" text="Cancel" />
+            <Button id="clearDataBtn" fx:id="clearDataBtn" onAction="#clearDataBtnClicked" layoutX="132.0" layoutY="42.0" mnemonicParsing="false" text="Clear Data" />
+            <Button id="saveBtn"  fx:id="saveBtn" onAction="#saveBtnClicked" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" text="Save" />
+            <Label layoutX="12.0" layoutY="9.0" text="Actions" wrapText="false">
+              <font>
+                <Font name="System Bold" size="20.0" />
+              </font>
+            </Label>
+          </children>
+        </Pane>
+      </bottom>
+      <center>
+        <GridPane gridLinesVisible="false" prefHeight="198.0">
+          <children>
+            <Label id="cdLabelLbl" contentDisplay="CENTER" text="CD Name:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+            <Label id="seriesLbl" contentDisplay="CENTER" font="$x1" text="Series:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label id="serialLbl" contentDisplay="CENTER" font="$x1" text="Serial Number" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label id="seriesLbl" contentDisplay="CENTER" font="$x1" text="Performer Name:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Label id="seriesLbl" contentDisplay="CENTER" font="$x1" text="Composer Name:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Label id="freeTextbl" contentDisplay="CENTER" font="$x1" text="Free Text:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+            <TextField id="cdLabelTxt" fx:id="cdLabelTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField id="seriesNameTxt" fx:id="seriesNameTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField id="serialNumberTxt" fx:id="serialNumberTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField id="performerNameTxt" fx:id="performerNameTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField id="composerNameTxt" fx:id="composerNameTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField id="freeTextTxt" fx:id="freeTextTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="139.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="461.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="177.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+      </center>
+      <top>
+        <BorderPane minHeight="52.0" prefHeight="52.0" prefWidth="600.0">
+          <center>
+            <Label text="Enter CD Form">
+              <font>
+                <Font size="60.0" />
+              </font>
+            </Label>
+          </center>
+        </BorderPane>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
+

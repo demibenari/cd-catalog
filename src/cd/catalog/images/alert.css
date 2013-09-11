@@ -1,0 +1,7 @@
+@CHARSET "windows-1255";
+
+.root {
+    -fx-background-color: #c0c0c0;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
