@@ -1,13 +1,5 @@
 package cd.catalog;
 	
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import cd.catalog.entities.CD;
-import cd.catalog.enums.EFieldType;
-import cd.catalog.model.CDsModel;
-import cd.catalog.utils.impl.CsvCDHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
