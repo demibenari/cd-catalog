@@ -1,5 +1,5 @@
 package cd.catalog;
-	
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -14,24 +14,26 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-        try {
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("MainForm.fxml"));
-        	Parent root = (Parent) loader.load();
-        	MainFormController controller = loader.getController();
-        	controller.setStage(primaryStage); // or what you want to do
-        	
-            AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("MainForm.fxml"));
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            primaryStage.setScene(scene);
-            primaryStage.setTitle(APPLICATION_TITLE);
-            
-            setStageMaximized(primaryStage);
-            
-            primaryStage.show();
-        } catch (Exception ex) {
-        	System.out.println(ex);
-        }
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(
+					"MainForm.fxml"));
+			Parent root = (Parent) loader.load();
+			MainFormController controller = loader.getController();
+			controller.setStage(primaryStage); // or what you want to do
+
+			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class
+					.getResource("MainForm.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.setTitle(APPLICATION_TITLE);
+
+			setStageMaximized(primaryStage);
+
+			primaryStage.show();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
 	}
 
 	private void setStageMaximized(Stage primaryStage) {
@@ -43,13 +45,7 @@ public class Main extends Application {
 		primaryStage.setWidth(bounds.getWidth());
 		primaryStage.setHeight(bounds.getHeight());
 	}
-	
-	   @Override
-	    public void stop() throws Exception {
-	      super.stop();
-	    }
-	
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

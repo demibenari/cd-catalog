@@ -96,6 +96,7 @@ public class CDsModel implements ICDSubject {
 							matchedCDs.put(clonedCD, clonedCD);
 						}
 					}
+					
 				}
 			}
 		}
