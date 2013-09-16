@@ -13,7 +13,7 @@ import cd.catalog.entities.CD;
 import cd.catalog.model.CDsModel;
 
 
-public class EditCDDataController implements Initializable {
+public class EditCDFormController implements Initializable {
 	private static final String EMPTY_STRING = "";
 	private boolean isEditMode = false;
 	private CD enteredCD = null;
@@ -29,6 +29,7 @@ public class EditCDDataController implements Initializable {
 	@FXML Button cancelBtn;
 	@FXML Button saveBtn;
 	@FXML Button clearDataBtn;
+	@FXML Button saveAndExitBtn;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -42,6 +43,10 @@ public class EditCDDataController implements Initializable {
 	
 	@FXML
 	public void clearDataBtnClicked(ActionEvent event) {
+		clearAllFields();
+	}
+
+	private void clearAllFields() {
 		cdLabelTxt.setText(EMPTY_STRING);
 		seriesNameTxt.setText(EMPTY_STRING);
 		serialNumberTxt.setText(EMPTY_STRING);
@@ -52,6 +57,25 @@ public class EditCDDataController implements Initializable {
 	
 	@FXML
 	public void saveBtnClicked(ActionEvent event) {
+		if (isEditMode) {
+			CD cloneCD = enteredCD.cloneCD();
+			
+			CD modifiedCD = collectFieldsToCD();
+			
+			cdsModel.replaceCD(cloneCD, modifiedCD);
+			
+			clearAllFields();
+		} else {
+			CD newCD = collectFieldsToCD();
+			
+			cdsModel.addNewCD(newCD);
+			
+			clearAllFields();
+		}
+	}
+	
+	@FXML 
+	public void saveAndExitClicked(ActionEvent event) {
 		if (isEditMode) {
 			CD cloneCD = enteredCD.cloneCD();
 			

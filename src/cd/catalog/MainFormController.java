@@ -37,6 +37,7 @@ import cd.catalog.utils.impl.CsvCDHandler;
 
 public class MainFormController implements Initializable, ICDListener {
 	
+	private static final String EMPTY_STRING = "";
 	private CDsModel model = null;
 	private ObservableList<CD> cdsList = null;
 		
@@ -114,14 +115,18 @@ public class MainFormController implements Initializable, ICDListener {
     
 	@FXML
 	public void showAllCDsBtnClicked(ActionEvent event) {
-		
+		clearTable();
+		List<CD> allCDs = model.getAllCDs();
+		fillTable(allCDs);
 	}
     	
-    
-	
 	@FXML
-	public void loadButtonClicked(ActionEvent event) {
-    	
+	public void clearFilterClicked(ActionEvent event) {
+    	searchPatternTxt.setText(EMPTY_STRING);
+    	labelChk.setSelected(false);
+    	performerChk.setSelected(false);
+    	composerChk.setSelected(false);
+    	freeTextChk.setSelected(false);
     }
     
     
@@ -208,12 +213,12 @@ public class MainFormController implements Initializable, ICDListener {
     
     private void openEditCDForm(CD editedCD) {
 		try {
-			  FXMLLoader loader = new FXMLLoader(Main.class.getResource("EditCDData.fxml"));
+			  FXMLLoader loader = new FXMLLoader(Main.class.getResource("EditCDForm.fxml"));
 	          Stage stage = new Stage(StageStyle.DECORATED);
 	          stage.setTitle("Edit CD Data");
 	          
 	          AnchorPane page = (AnchorPane) loader.load();
-			  EditCDDataController controller = loader.<EditCDDataController>getController();
+	          EditCDFormController controller = loader.<EditCDFormController>getController();
 			  controller.enterEditingCDData(editedCD, model);
 
 	          Scene scene = new Scene(page);
@@ -230,12 +235,12 @@ public class MainFormController implements Initializable, ICDListener {
     
     private void openNewCDForm() {
 		try {
-			  FXMLLoader loader = new FXMLLoader(Main.class.getResource("EditCDData.fxml"));
+			  FXMLLoader loader = new FXMLLoader(Main.class.getResource("EditCDForm.fxml"));
 	          Stage stage = new Stage(StageStyle.DECORATED);
-	          stage.setTitle("Edit CD Data");
+	          stage.setTitle("Enter New CD");
 	          
 	          AnchorPane page = (AnchorPane) loader.load();
-			  EditCDDataController controller = loader.<EditCDDataController>getController();
+	          EditCDFormController controller = loader.<EditCDFormController>getController();
 	          controller.enterNewCDData(model);
 
 	          Scene scene = new Scene(page);

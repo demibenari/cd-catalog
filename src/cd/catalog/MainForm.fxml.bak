@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="654.0" prefWidth="825.0000999999975" xmlns:fx="http://javafx.com/fxml" fx:controller="cd.catalog.MainFormController">
+  <children>
+    <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0">
+          <center>
+            <TableView fx:id="cdsTable" onMouseClicked="#tableClickHandler" prefHeight="200.0" prefWidth="200.0" >
+              <columns>
+                <TableColumn id="labelCol" fx:id="labelCol" maxWidth="5000.0" minWidth="10.0" prefWidth="144.0" text="Label" />
+                <TableColumn id="seriesCol" fx:id="seriesCol" prefWidth="75.0" text="Series" />
+                <TableColumn id="serialCol" fx:id="serialCol" prefWidth="75.0" text="Serial" />
+                <TableColumn id="performerCol" fx:id="performerCol" prefWidth="75.0" text="Performer" />
+                <TableColumn id="composerCol" fx:id="composerCol" maxWidth="5000.0" minWidth="10.0" prefWidth="189.0" text="Composer" />
+                <TableColumn id="freeTextCol" fx:id="freeTextCol" maxWidth="5000.0" minWidth="10.0" prefWidth="315.0" text="Free Text" />
+              </columns>
+            </TableView>
+          </center>
+          <top>
+            <Pane fx:id="mainPanel" prefHeight="83.0" prefWidth="826.0">
+              <children>
+                <Button id="searchBtn" fx:id="searchBtn" onAction="#processSearch" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" text="Search" />
+                <Button id="clearFilterBtn" fx:id="clearFileterBtn" onAction="#clearFilterClicked" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" text="Clear Filter" />
+                <TextField fx:id="searchPatternTxt" layoutX="80.0" layoutY="11.0" prefWidth="353.0" />
+                <CheckBox fx:id="labelChk" layoutX="451.0" layoutY="14.0" mnemonicParsing="false" text="Label" selected="true"/>
+                <CheckBox fx:id="performerChk" layoutX="509.0" layoutY="15.0" mnemonicParsing="false" text="Performer" />
+                <CheckBox id="composerChk" fx:id="composerChk" layoutX="589.0" layoutY="15.0" mnemonicParsing="false" text="Composer" />
+                <CheckBox fx:id="freeTextChk" layoutX="672.0" layoutY="15.0" mnemonicParsing="false" text="Free Text" />
+                <Button fx:id="showAllCDsBtn" onAction="#showAllCDsBtnClicked" layoutX="98.0" layoutY="41.0" mnemonicParsing="false" text="Show All CD's" />
+                <Button fx:id="enterNewCDBtn" layoutX="201.0" layoutY="41.0" mnemonicParsing="false" onAction="#enterNewCDClicked" text="Enter New CD" />
+				<Button fx:id="deleteCDs" layoutX="304.0" layoutY="41.0" mnemonicParsing="false" onAction="#deleteSelectedClicked" text="Delete Selected" />
+              </children>
+            </Pane>
+          </top>
+        </BorderPane>
+      </center>
+      <top>
+        <MenuBar>
+          <menus>
+            <Menu mnemonicParsing="false" text="File">
+              <items>
+                <MenuItem fx:id="saveBackToFileMenuItem" onAction="#saveBackToFileClicked" text="Save Back To File" mnemonicParsing="false" />
+                <MenuItem fx:id="closeMenuItem" onAction="#closeClicked" text="Exit" mnemonicParsing="false" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" text="About" />
+              </items>
+            </Menu>
+          </menus>
+        </MenuBar>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

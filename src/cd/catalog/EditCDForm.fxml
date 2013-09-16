@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="242.0" prefWidth="586.0" xmlns:fx="http://javafx.com/fxml" fx:controller="cd.catalog.EditCDFormController">
+  <children>
+    <Label id="cdLabelLbl" contentDisplay="CENTER" layoutX="48.0" layoutY="21.0" style="-fx-color:#FFF;" text="CD Label:" />
+    <Label id="seriesLbl" contentDisplay="CENTER" layoutX="68.0" layoutY="46.0" text="Series:" />
+    <Label id="serialLbl" contentDisplay="CENTER" font="$x1" layoutX="26.0" layoutY="76.0" text="Serial Number" />
+    <Label id="seriesLbl" contentDisplay="CENTER" font="$x1" layoutX="11.0" layoutY="102.0" text="Performer Name:" />
+    <Label id="seriesLbl" contentDisplay="CENTER" font="$x1" layoutX="9.0" layoutY="128.0" text="Composer Name:" />
+    <Label id="freeTextbl" contentDisplay="CENTER" font="$x1" layoutX="51.0" layoutY="155.0" text="Free Text:" />
+    <TextField id="cdLabelTxt" fx:id="cdLabelTxt" layoutX="107.0" layoutY="18.0" prefWidth="461.0" />
+    <TextField id="seriesNameTxt" fx:id="seriesNameTxt" layoutX="107.0" layoutY="46.0" prefWidth="461.0" />
+    <TextField id="serialNumberTxt" fx:id="serialNumberTxt" layoutX="107.0" layoutY="73.0" prefWidth="461.0" />
+    <TextField id="performerNameTxt" fx:id="performerNameTxt" layoutX="107.0" layoutY="99.0" prefWidth="461.0" />
+    <TextField id="composerNameTxt" fx:id="composerNameTxt" layoutX="107.0" layoutY="125.0" prefWidth="461.0" />
+    <TextField id="freeTextTxt"  fx:id="freeTextTxt" layoutX="107.0" layoutY="152.0" prefWidth="461.0" />
+    <Pane layoutX="0.0" layoutY="186.0" prefHeight="56.0" prefWidth="600.0">
+      <children>
+        <Label layoutX="12.0" layoutY="-3.0" text="Actions" wrapText="false">
+          <font>
+            <Font name="System Bold" size="20.0" />
+          </font>
+        </Label>
+        <Button id="cancelBtn" fx:id="cancelBtn" onAction="#cancelBtnClicked" layoutX="174.0" layoutY="26.0" mnemonicParsing="false" text="Cancel" />
+        <Button id="clearDataBtn" fx:id="clearDataBtn" onAction="#clearDataBtnClicked" layoutX="238.0" layoutY="26.0" mnemonicParsing="false" text="Clear Data" />
+        <Button id="saveBtn" fx:id="saveBtn" onAction="#saveBtnClicked" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" text="Save" />
+        <Button id="saveAndExitBtn" fx:id="saveAndExitBtn" onAction="#saveAndExitClicked" layoutX="71.0" layoutY="26.0" mnemonicParsing="false" text="Save And Exit" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

@@ -53,7 +53,7 @@ public class CDsModel implements ICDSubject {
 		boolean searchInLabel = typesToSearchIn.contains(EFieldType.CD_LABEL);
 		boolean serachInPerformer = typesToSearchIn.contains(EFieldType.PERFORMER);
 		boolean searchInComposer = typesToSearchIn.contains(EFieldType.COMPOSER);
-//		boolean searchInFreeText = typesToSearchIn
+		boolean searchInFreeText = typesToSearchIn.contains(EFieldType.FREE_TEXT);
 		
 		for (CD currCD : allCDKeys) {
 			if (pattern.equals(EMPTY_STRING)) {
@@ -81,6 +81,16 @@ public class CDsModel implements ICDSubject {
 				
 				if (searchInComposer) {
 					if (currCD.getComposer().contains(pattern)) {
+						if (!matchedCDs.containsKey(currCD)) {
+							CD clonedCD = currCD.cloneCD();
+							matchedCDs.put(clonedCD, clonedCD);
+						}
+					}
+				}
+				
+				
+				if (searchInFreeText) {
+					if (currCD.getFreeText().contains(pattern)) {
 						if (!matchedCDs.containsKey(currCD)) {
 							CD clonedCD = currCD.cloneCD();
 							matchedCDs.put(clonedCD, clonedCD);
