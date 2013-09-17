@@ -1,13 +1,16 @@
 package cd.catalog;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,6 +45,8 @@ public class MainFormController implements Initializable, ICDListener {
 	private ObservableList<CD> cdsList = null;
 		
 	private Stage mainStage;
+
+	private String inputFileName = "";
 	
 	// Component Members
 	@FXML Pane mainPanel;
@@ -75,12 +80,17 @@ public class MainFormController implements Initializable, ICDListener {
 	@FXML TableColumn<CD, String> composerCol;
 	@FXML TableColumn<CD, String> freeTextCol;
 	
-	private static final String inputPath = "C:/Temp/cds.csv";
-	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+	}
+	
+	public void loadData(String inputFilePath) {
+		File inputFile = new File(inputFilePath);
+		inputFileName = inputFilePath;
+		
 		CsvCDHandler handler = new CsvCDHandler();
-		List<CD> allCDs = handler.loadAllCDs(new File(inputPath));
+		
+		List<CD> allCDs = handler.loadAllCDs(inputFile);
 		
 		labelCol.setCellValueFactory(new PropertyValueFactory<CD, String>("cdLabel"));
 		seriesCol.setCellValueFactory(new PropertyValueFactory<CD, String>("series"));
@@ -164,16 +174,28 @@ public class MainFormController implements Initializable, ICDListener {
     
     @FXML 
     public void closeClicked(ActionEvent event) {
-    	
+		saveToFileAndCloseApplication();
     }
+
+	public void saveToFileAndCloseApplication() {
+		saveBackToFile();
+		new AlertDialog(mainStage, "Goodbye, You're changes were saved back to: " + inputFileName, AlertDialog.ICON_INFO).showAndWait();
+		Platform.exit();
+	}
     
 	@FXML
 	public void saveBackToFileClicked(ActionEvent event) {
+		saveBackToFile();
+		
+		new AlertDialog(mainStage, "You're changes were saved successfuly back to: " + inputFileName, AlertDialog.ICON_INFO).showAndWait();
+    }
+
+	private void saveBackToFile() {
 		CsvCDHandler handler = new CsvCDHandler();
-		boolean isSuccessful = handler.saveCDs(new File(inputPath), model.getAllCDs());
+		boolean isSuccessful = handler.saveCDs(new File(inputFileName), model.getAllCDs());
 		
 		System.out.println("Is successful: " + isSuccessful);
-    }
+	}
     
     // Private Methods
     private List<EFieldType> collectCheckParameters() {
@@ -215,6 +237,7 @@ public class MainFormController implements Initializable, ICDListener {
 		try {
 			  FXMLLoader loader = new FXMLLoader(Main.class.getResource("EditCDForm.fxml"));
 	          Stage stage = new Stage(StageStyle.DECORATED);
+	  		  stage.setResizable(false);
 	          stage.setTitle("Edit CD Data");
 	          
 	          AnchorPane page = (AnchorPane) loader.load();
@@ -237,6 +260,7 @@ public class MainFormController implements Initializable, ICDListener {
 		try {
 			  FXMLLoader loader = new FXMLLoader(Main.class.getResource("EditCDForm.fxml"));
 	          Stage stage = new Stage(StageStyle.DECORATED);
+	  		  stage.setResizable(false);
 	          stage.setTitle("Enter New CD");
 	          
 	          AnchorPane page = (AnchorPane) loader.load();

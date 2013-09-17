@@ -19,7 +19,7 @@ public class CsvCDHandler implements ICDHandler {
 	
 	@Override
 	public List<CD> loadAllCDs(File sourcePath) {
-		List<CD> resultList = null;
+		List<CD> resultList = new ArrayList<CD>();
 		
 		try {
 			if (sourcePath.exists()) {
