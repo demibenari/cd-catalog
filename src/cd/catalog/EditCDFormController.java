@@ -19,6 +19,8 @@ public class EditCDFormController implements Initializable {
 	private CD enteredCD = null;
 	private CDsModel cdsModel = null;
 	
+	private Stage stage;
+	
 	@FXML TextField cdLabelTxt;
 	@FXML TextField seriesNameTxt;
 	@FXML TextField serialNumberTxt;
@@ -34,6 +36,10 @@ public class EditCDFormController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
+	}
+	
+	public void setStage(Stage primaryStage) {
+		stage = primaryStage;
 	}
 	
 	@FXML
@@ -57,39 +63,75 @@ public class EditCDFormController implements Initializable {
 	
 	@FXML
 	public void saveBtnClicked(ActionEvent event) {
+		saveButtonClickHandler();
+	}
+
+	public boolean saveButtonClickHandler() {
+		boolean result = true;
+		
 		if (isEditMode) {
 			CD cloneCD = enteredCD.cloneCD();
 			
-			CD modifiedCD = collectFieldsToCD();
-			
-			cdsModel.replaceCD(cloneCD, modifiedCD);
-			
-			clearAllFields();
+			if (isAllFieldsNotEmpty()) {
+				CD modifiedCD = collectFieldsToCD();
+				
+				cdsModel.replaceCD(cloneCD, modifiedCD);
+				
+				clearAllFields();
+			}
+			else {
+				new AlertDialog(stage, "Did not enter any values, all values can't be empty", AlertDialog.ICON_ERROR).showAndWait();
+				result = false;
+			}
+
 		} else {
-			CD newCD = collectFieldsToCD();
-			
-			cdsModel.addNewCD(newCD);
-			
-			clearAllFields();
+			if (isAllFieldsNotEmpty()) {
+				CD newCD = collectFieldsToCD();
+				
+				cdsModel.addNewCD(newCD);
+				
+				clearAllFields();
+			}
+			else {
+				new AlertDialog(stage, "Did not enter any values, all values can't be empty", AlertDialog.ICON_ERROR).showAndWait();
+				result = false;
+			}
 		}
+		
+		return result;
+	}
+	
+	private boolean isAllFieldsNotEmpty() {
+		boolean result = false;
+		
+		if (!cdLabelTxt.getText().equals(EMPTY_STRING)) {
+			result = true;
+		}
+		if (!seriesNameTxt.getText().equals(EMPTY_STRING)) {
+			result = true;
+		}
+		if (!serialNumberTxt.getText().equals(EMPTY_STRING)) {
+			result = true;
+		}
+		if (!performerNameTxt.getText().equals(EMPTY_STRING)) {
+			result = true;
+		}
+		if (!composerNameTxt.getText().equals(EMPTY_STRING)) {
+			result = true;
+		}
+		if (!freeTextTxt.getText().equals(EMPTY_STRING)) {
+			result = true;
+		}
+		
+		return result;
 	}
 	
 	@FXML 
 	public void saveAndExitClicked(ActionEvent event) {
-		if (isEditMode) {
-			CD cloneCD = enteredCD.cloneCD();
-			
-			CD modifiedCD = collectFieldsToCD();
-			
-			cdsModel.replaceCD(cloneCD, modifiedCD);
-			
-			closeContainerStage();
-		} else {
-			CD newCD = collectFieldsToCD();
-			
-			cdsModel.addNewCD(newCD);
-			
-			closeContainerStage();
+		boolean positivResult = saveButtonClickHandler();
+		
+		if (positivResult) {
+			closeContainerStage();	
 		}
 	}
 	

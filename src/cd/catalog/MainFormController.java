@@ -274,7 +274,9 @@ public class MainFormController implements Initializable, ICDListener {
 	          
 	          AnchorPane page = (AnchorPane) loader.load();
 	          EditCDFormController controller = loader.<EditCDFormController>getController();
+			  controller.setStage(stage);
 			  controller.enterEditingCDData(editedCD, model);
+
 
 	          Scene scene = new Scene(page);
 			  stage.initModality(Modality.APPLICATION_MODAL);
@@ -297,6 +299,7 @@ public class MainFormController implements Initializable, ICDListener {
 	          
 	          AnchorPane page = (AnchorPane) loader.load();
 	          EditCDFormController controller = loader.<EditCDFormController>getController();
+			  controller.setStage(stage);
 	          controller.enterNewCDData(model);
 
 	          Scene scene = new Scene(page);
