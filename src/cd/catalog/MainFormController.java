@@ -1,10 +1,7 @@
 package cd.catalog;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +53,7 @@ public class MainFormController implements Initializable, ICDListener {
 	// Menu Components
 	@FXML MenuItem saveBackToFileMenuItem;
 	@FXML MenuItem closeMenuItem;
+	@FXML MenuItem aboutMenuItem;
 	
 	// Action Buttons
 	@FXML Button searchBtn;
@@ -86,7 +84,7 @@ public class MainFormController implements Initializable, ICDListener {
 	
 	public void loadData(String inputFilePath) {
 		File inputFile = new File(inputFilePath);
-		inputFileName = inputFilePath;
+		this.inputFileName = inputFilePath;
 		
 		CsvCDHandler handler = new CsvCDHandler();
 		
@@ -180,7 +178,14 @@ public class MainFormController implements Initializable, ICDListener {
 	public void saveToFileAndCloseApplication() {
 		saveBackToFile();
 		new AlertDialog(mainStage, "Goodbye, You're changes were saved back to: " + inputFileName, AlertDialog.ICON_INFO).showAndWait();
-		Platform.exit();
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				Platform.exit();				
+			}
+		});
+
 	}
     
 	@FXML
@@ -190,9 +195,36 @@ public class MainFormController implements Initializable, ICDListener {
 		new AlertDialog(mainStage, "You're changes were saved successfuly back to: " + inputFileName, AlertDialog.ICON_INFO).showAndWait();
     }
 
+	@FXML
+	public void aboutClicked(ActionEvent event) {
+		FXMLLoader loader = new FXMLLoader(
+				Main.class.getResource("AboutForm.fxml"));
+		Stage stage = new Stage(StageStyle.DECORATED);
+		stage.setResizable(false);
+		stage.setTitle("About CD Catalog");
+
+		AnchorPane page;
+		try {
+			page = (AnchorPane) loader.load();
+			Scene scene = new Scene(page);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setScene(scene);
+			stage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void saveBackToFile() {
 		CsvCDHandler handler = new CsvCDHandler();
-		boolean isSuccessful = handler.saveCDs(new File(inputFileName), model.getAllCDs());
+		System.out.println("Saving to File:");
+		
+		File destPath = new File(inputFileName);
+		
+		System.out.println(destPath);
+		
+		boolean isSuccessful = handler.saveCDs(destPath, model.getAllCDs());
 		
 		System.out.println("Is successful: " + isSuccessful);
 	}

@@ -41,7 +41,7 @@ public class AlertDialog extends Stage {
         });
  
         BorderPane borderPane = new BorderPane();
-        borderPane.getStylesheets().add(AlertDialog.class.getResource("./images/alert.css").toExternalForm());        
+        borderPane.getStylesheets().add(AlertDialog.class.getResource("images/alert.css").toExternalForm());        
         borderPane.setTop(label);
  
         HBox hbox2 = new HBox();
@@ -71,12 +71,12 @@ public class AlertDialog extends Stage {
  
     private Image getImage(int type) {
         if (type == ICON_ERROR) {
-        	Image img = new Image(AlertDialog.class.getResourceAsStream("./images/error.png"), 45, 45,false, true);
+        	Image img = new Image(AlertDialog.class.getResourceAsStream("images/error.png"), 45, 45,false, true);
         	
         	return img;
         }
         else {
-            return new Image(AlertDialog.class.getResourceAsStream("./images/info.png"), 45, 45,false, true);
+            return new Image(AlertDialog.class.getResourceAsStream("images/info.png"), 45, 45,false, true);
         }
     }
  
